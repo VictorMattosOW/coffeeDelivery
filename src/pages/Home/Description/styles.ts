@@ -3,7 +3,8 @@ export const InfoContent = styled.main`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 5.875rem;
+
+  margin: 6.75rem 0;
 `
 
 export const Descriptions = styled.section`

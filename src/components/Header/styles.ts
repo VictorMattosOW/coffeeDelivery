@@ -41,4 +41,5 @@ export const ShoppingCar = styled.a`
   width: 2.375rem;
   border-radius: 8px;
   background: ${(props) => props.theme['yellow-light']};
+  cursor: pointer;
 `
