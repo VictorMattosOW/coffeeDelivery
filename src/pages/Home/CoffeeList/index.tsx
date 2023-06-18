@@ -12,6 +12,7 @@ import {
   TagContent,
   Title,
 } from './styled'
+
 interface CoffeeType {
   id: number
   name: string
