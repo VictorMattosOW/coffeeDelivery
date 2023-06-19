@@ -29,7 +29,7 @@ const coffees: CoffeeType[] = [
     description: 'Expresso diluído, menos intenso que o tradicional',
     tag: ['TRADICIONAL'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Expresso.svg',
+    img: '/coffee-image/Type=Expresso.svg',
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const coffees: CoffeeType[] = [
     description: 'O tradicional café feito com água quente e grãos moídos',
     tag: ['TRADICIONAL'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Americano.svg',
+    img: '/coffee-image/Type=Americano.svg',
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const coffees: CoffeeType[] = [
     description: 'Café expresso tradicional com espuma cremosa',
     tag: ['TRADICIONAL'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Expresso Cremoso.svg',
+    img: '/coffee-image/Type=Expresso Cremoso.svg',
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const coffees: CoffeeType[] = [
     description: 'Bebida preparada com café expresso e cubos de gelo',
     tag: ['TRADICIONAL', 'GELADO'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=ExpressoGelado.svg',
+    img: '/coffee-image/Type=ExpressoGelado.svg',
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const coffees: CoffeeType[] = [
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
     tag: ['TRADICIONAL', 'com leite'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Café com Leite.svg',
+    img: '/coffee-image/Type=Café com Leite.svg',
   },
   {
     id: 6,
@@ -70,7 +70,7 @@ const coffees: CoffeeType[] = [
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
     tag: ['TRADICIONAL', 'com leite'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Latte.svg',
+    img: '/coffee-image/Type=Latte.svg',
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const coffees: CoffeeType[] = [
       'Bebida com canela feita de doses iguais de café, leite e espuma',
     tag: ['TRADICIONAL', 'com leite'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Capuccino.svg',
+    img: '/coffee-image/Type=Capuccino.svg',
   },
   {
     id: 8,
@@ -88,7 +88,7 @@ const coffees: CoffeeType[] = [
       'Café expresso misturado com um pouco de leite quente e espuma',
     tag: ['TRADICIONAL', 'com leite'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Macchiato.svg',
+    img: '/coffee-image/Type=Macchiato.svg',
   },
   {
     id: 9,
@@ -96,7 +96,7 @@ const coffees: CoffeeType[] = [
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     tag: ['TRADICIONAL', 'com leite'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Mochaccino.svg',
+    img: '/coffee-image/Type=Mochaccino.svg',
   },
   {
     id: 10,
@@ -104,7 +104,7 @@ const coffees: CoffeeType[] = [
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
     tag: ['especial', 'com leite'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Chocolate Quente.svg',
+    img: '/coffee-image/Type=Chocolate Quente.svg',
   },
   {
     id: 11,
@@ -113,7 +113,7 @@ const coffees: CoffeeType[] = [
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
     tag: ['especial', 'gelado', 'alcoólico'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Cubano.svg',
+    img: '/coffee-image/Type=Cubano.svg',
   },
   {
     id: 12,
@@ -121,7 +121,7 @@ const coffees: CoffeeType[] = [
     description: 'Bebida adocicada preparada com café e leite de coco',
     tag: ['especial'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Havaiano.svg',
+    img: '/coffee-image/Type=Havaiano.svg',
   },
   {
     id: 13,
@@ -129,7 +129,7 @@ const coffees: CoffeeType[] = [
     description: 'Bebida preparada com grãos de café árabe e especiarias',
     tag: ['especial'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Árabe.svg',
+    img: '/coffee-image/Type=Árabe.svg',
   },
   {
     id: 14,
@@ -137,7 +137,7 @@ const coffees: CoffeeType[] = [
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
     tag: ['especial', 'alcoólico'],
     price: '9,90',
-    img: '../../../../public/coffee-image/Type=Irlandês.svg',
+    img: '/coffee-image/Type=Irlandês.svg',
   },
 ]
 
