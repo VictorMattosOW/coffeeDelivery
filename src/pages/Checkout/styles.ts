@@ -18,11 +18,15 @@ export const AddressAndCreditCard = styled.div`
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   border-radius: 8px;
+  gap: 2rem;
   padding: 2.5rem;
   margin-bottom: 0.8rem;
   background: ${(props) => props.theme['base-card']};
+`
+
+export const CardCheckout = styled(Card)`
+  border-top-right-radius: 44px;
 `
 
 export const TitleContent = styled.div`
@@ -101,3 +105,110 @@ export const Select = styled.p`
   }
 `
 export const PaymentContent = styled.div``
+
+export const SelectedItemsContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  span {
+    font-weight: bold;
+    color: ${(props) => props.theme['base-text']};
+  }
+
+  img {
+    width: 64px;
+    height: 64px;
+  }
+`
+
+export const AddOrRemoveButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 72px;
+  height: 30px;
+  border-radius: 8px;
+  padding: 0 10px;
+  background-color: ${(props) => props.theme['base-button']};
+
+  span {
+    font-size: 1rem;
+    color: ${(props) => props.theme['base-title']};
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border: none;
+    color: ${(props) => props.theme.purple};
+    background-color: ${(props) => props.theme['base-button']};
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+`
+
+export const ButtonContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export const ButtonDelete = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 91px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 0.8rem;
+  background-color: ${(props) => props.theme['base-button']};
+  text-transform: uppercase;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.theme['base-hover']};
+  }
+`
+export const Divider = styled.div`
+  border-top: 1px solid ${(props) => props.theme['base-button']};
+  margin-top: 1.5rem;
+`
+
+export const SummaryContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.8rem; */
+`
+
+export const Summary = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  p {
+    color: ${(props) => props.theme['base-text']};
+  }
+
+  strong {
+    font-size: 1.3rem;
+  }
+
+  button {
+    width: 100%;
+    height: 46px;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    background: ${(props) => props.theme.yellow};
+    color: ${(props) => props.theme.white};
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      background: ${(props) => props.theme['yellow-dark']};
+    }
+  }
+`

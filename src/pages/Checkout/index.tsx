@@ -1,14 +1,36 @@
-import { MapPinLine, CurrencyDollar, CreditCard } from '@phosphor-icons/react'
 import {
+  MapPinLine,
+  CurrencyDollar,
+  CreditCard,
+  Trash,
+} from '@phosphor-icons/react'
+import {
+  AddOrRemoveButtonContent,
   AddressAndCreditCard,
+  ButtonContent,
+  ButtonDelete,
   Card,
+  CardCheckout,
   Container,
   Content,
+  Divider,
   Input,
   PaymentContent,
   Select,
+  SelectedItemsContent,
+  Summary,
+  SummaryContent,
   TitleContent,
 } from './styles'
+
+const cafe = {
+  id: 1,
+  name: 'Expresso Tradicional',
+  description: 'Expresso diluído, menos intenso que o tradicional',
+  tag: ['TRADICIONAL'],
+  price: '9,90',
+  img: '/coffee-image/Type=Expresso.svg',
+}
 
 export function Checkout() {
   return (
@@ -81,9 +103,48 @@ export function Checkout() {
       </AddressAndCreditCard>
       <PaymentContent>
         <h2>Cafés selecionados</h2>
-        <Card>
-          <h1>teste</h1>
-        </Card>
+        <CardCheckout>
+          <SelectedItemsContent>
+            <div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <img src={cafe.img} alt="" />
+                <div>
+                  <p>{cafe.name}</p>
+                  <ButtonContent>
+                    <AddOrRemoveButtonContent>
+                      <button>-</button>
+                      <span>1</span>
+                      <button>+</button>
+                    </AddOrRemoveButtonContent>
+                    <ButtonDelete>
+                      <Trash color="#8047F8" size={15} />
+                      remover
+                    </ButtonDelete>
+                  </ButtonContent>
+                </div>
+                <span>R$ {cafe.price}</span>
+              </div>
+              <Divider></Divider>
+            </div>
+          </SelectedItemsContent>
+          <SummaryContent>
+            <Summary>
+              <p>Total de itens</p>
+              <p>R$ 29,70</p>
+            </Summary>
+            <Summary>
+              <p>Entrega</p>
+              <p>R$ 3,50</p>
+            </Summary>
+            <Summary>
+              <strong>Total</strong>
+              <strong>R$ 33,20</strong>
+            </Summary>
+            <Summary>
+              <button>confirmar pedido</button>
+            </Summary>
+          </SummaryContent>
+        </CardCheckout>
       </PaymentContent>
     </Container>
   )
