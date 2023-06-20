@@ -15,29 +15,33 @@ export const AddressAndCreditCard = styled.div`
   display: flex;
   flex-direction: column;
 `
-export const Address = styled.div`
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 23.25rem;
   border-radius: 8px;
   padding: 2.5rem;
+  margin-bottom: 0.8rem;
   background: ${(props) => props.theme['base-card']};
 `
 
-export const AddressTitle = styled.div`
+export const TitleContent = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  line-height: 120%;
+  line-height: 130%;
   span {
     font-size: 1.5rem;
     font-weight: 400;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  p {
+    color: ${(props) => props.theme['base-text']};
+  }
 `
 
-export const FormContainer = styled.div`
+export const Content = styled.div`
   div {
     display: flex;
     flex-direction: row;
@@ -61,4 +65,39 @@ export const Input = styled(BaseInput)<InputProps>`
   width: ${(props) => props.$width};
 `
 
+export const Select = styled.p`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 13rem;
+    height: 3.1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+
+    text-transform: uppercase;
+    color: ${(props) => props.theme['base-text']};
+    background-color: ${(props) => props.theme['base-button']};
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${(props) => props.theme['base-hover']};
+    }
+  }
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  input[type='radio']:checked + span {
+    border: 1px solid ${(props) => props.theme.purple};
+    background-color: ${(props) => props.theme['purple-light']};
+  }
+`
 export const PaymentContent = styled.div``
