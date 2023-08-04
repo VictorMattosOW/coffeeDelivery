@@ -11,6 +11,10 @@ body {
   background: ${(props) => props.theme.background};
 }
 
+h1, h2, h3, h4, p, strong {
+  line-height: 130%;
+}
+
 input:focus-visible {
     outline: none !important;
     border: 1px solid ${(props) => props.theme['yellow-dark']};
