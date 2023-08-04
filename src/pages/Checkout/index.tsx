@@ -14,7 +14,6 @@ import {
   Container,
   Content,
   Divider,
-  Input,
   PaymentContent,
   Select,
   SelectedItemsContent,
@@ -22,6 +21,10 @@ import {
   SummaryContent,
   TitleContent,
 } from './styles'
+import { z } from 'zod'
+import { FormProvider, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { AddressForm } from './addressForm'
 
 const cafe = {
   id: 1,
@@ -32,7 +35,36 @@ const cafe = {
   img: '/coffee-image/Type=Expresso.svg',
 }
 
+const addressFormValidationSchema = z.object({
+  rua: z.string().min(10),
+  numero: z.number().nonnegative(),
+  cep: z.string().min(8),
+  bairro: z.string(),
+  cidade: z.string(),
+  uf: z.string().min(2),
+})
+
+type addressFormData = z.infer<typeof addressFormValidationSchema>
+
 export function Checkout() {
+  const addressForm = useForm<addressFormData>({
+    resolver: zodResolver(addressFormValidationSchema),
+    defaultValues: {
+      bairro: '',
+      cep: '',
+      cidade: '',
+      numero: 0,
+      rua: '',
+      uf: '',
+    },
+  })
+
+  const { handleSubmit } = addressForm
+
+  function handleCreateNewAddress(data: addressFormData) {
+    console.log(data)
+  }
+
   return (
     <Container>
       <AddressAndCreditCard>
@@ -48,17 +80,9 @@ export function Checkout() {
 
           <Content>
             <form>
-              <Input type="text" placeholder="CEP" />
-              <Input $width="100%" type="text" placeholder="Rua" />
-              <div>
-                <Input type="text" placeholder="Número" />
-                <Input $width="70%" type="text" placeholder="Complemento" />
-              </div>
-              <div>
-                <Input type="text" placeholder="Bairro" />
-                <Input $width="60%" type="text" placeholder="Cidade" />
-                <Input $width="10%" type="text" placeholder="UF" />
-              </div>
+              <FormProvider {...addressForm}>
+                <AddressForm />
+              </FormProvider>
             </form>
           </Content>
         </Card>
@@ -73,7 +97,7 @@ export function Checkout() {
             </div>
           </TitleContent>
           <Content>
-            <form>
+            <form onSubmit={handleSubmit(handleCreateNewAddress)} action="">
               <Select>
                 <label>
                   <input type="radio" name="work_days" value="1" />

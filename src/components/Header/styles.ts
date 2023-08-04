@@ -31,15 +31,3 @@ export const MapLocale = styled.section`
     font-size: 0.95rem;
   }
 `
-
-export const ShoppingCar = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 2.375rem;
-  width: 2.375rem;
-  border-radius: 8px;
-  background: ${(props) => props.theme['yellow-light']};
-  cursor: pointer;
-`

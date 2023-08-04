@@ -40,7 +40,7 @@ export function Success() {
             </div>
           </Info>
         </CardInfo>
-        <img src="/public/coffee-image/Illustration.svg" alt="" />
+        <img src="/coffee-image/Illustration.svg" alt="" />
       </div>
     </section>
   )

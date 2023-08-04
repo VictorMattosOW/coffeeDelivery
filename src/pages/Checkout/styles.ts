@@ -53,23 +53,7 @@ export const Content = styled.div`
   }
 `
 
-export const BaseInput = styled.input`
-  height: 2.65rem;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 8px;
-  border: 1px solid ${(props) => props.theme['base-button']};
-  margin-bottom: 1rem;
-  background: ${(props) => props.theme['base-input']};
-`
-interface InputProps {
-  $width?: string
-}
-export const Input = styled(BaseInput)<InputProps>`
-  width: ${(props) => props.$width};
-`
-
-export const Select = styled.p`
+export const Select = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
