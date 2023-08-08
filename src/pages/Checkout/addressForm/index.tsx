@@ -5,7 +5,13 @@ export function AddressForm() {
   const { register } = useFormContext()
   return (
     <>
-      <Input type="text" id="cep" placeholder="CEP" {...register('cep')} />
+      <Input
+        type="text"
+        id="cep"
+        placeholder="CEP"
+        maxLength={8}
+        {...register('cep')}
+      />
       <Input
         $width="100%"
         type="text"

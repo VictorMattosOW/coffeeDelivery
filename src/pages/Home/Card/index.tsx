@@ -1,4 +1,5 @@
 import { ButtonCart } from '../../../components/ButtonCart'
+import { CoffeeShopContext } from '../../../contexts/CoffeeShopeContext'
 import {
   AddOrRemoveButtonContent,
   AddToCarContent,
@@ -9,7 +10,7 @@ import {
   Tag,
   TagContent,
 } from './styles'
-import { useState } from 'react'
+import { useContext } from 'react'
 
 interface CoffeeProps {
   coffee: {
@@ -19,37 +20,18 @@ interface CoffeeProps {
     tag: string[]
     price: string
     img: string
+    quantity: number
   }
 }
 
 export function Card({ coffee }: CoffeeProps) {
-  const { id, name, description, tag, price, img } = coffee
-  const [_product, setCoffee] = useState<CoffeeProps>({} as CoffeeProps)
-  const [coffeeQtt, setCoffeeQtt] = useState(1)
+  const { id, name, description, tag, price, img, quantity } = coffee
+  const {
+    handleAddQuantityProduct,
+    handleRemoveQuantityProduct,
+    handleAddItemAtCart,
+  } = useContext(CoffeeShopContext)
 
-  function handleAddItemAtCart() {
-    const coffeeBody: CoffeeProps = {
-      coffee: {
-        id,
-        name,
-        description,
-        tag,
-        price,
-        img,
-      },
-    }
-    setCoffee(coffeeBody)
-  }
-
-  function handleSumCoffeeQuantity() {
-    setCoffeeQtt((state) => state + 1)
-  }
-
-  function handleSubtractCoffeeQuantity() {
-    if (coffeeQtt > 1) {
-      setCoffeeQtt((state) => state - 1)
-    }
-  }
   return (
     <CardContent key={id}>
       <img src={img} alt={name} />
@@ -70,13 +52,15 @@ export function Card({ coffee }: CoffeeProps) {
         </PriceContent>
         <ButtonsContent>
           <AddOrRemoveButtonContent>
-            <button onClick={handleSubtractCoffeeQuantity}>-</button>
-            <span>{coffeeQtt}</span>
-            <button onClick={handleSumCoffeeQuantity}>+</button>
+            <button onClick={() => handleRemoveQuantityProduct(coffee)}>
+              -
+            </button>
+            <span>{quantity}</span>
+            <button onClick={() => handleAddQuantityProduct(coffee)}>+</button>
           </AddOrRemoveButtonContent>
           <ButtonCart
             isHeader={false}
-            handleAddItemAtCart={handleAddItemAtCart}
+            handleAddItemAtCart={() => handleAddItemAtCart(coffee)}
           />
         </ButtonsContent>
       </AddToCarContent>

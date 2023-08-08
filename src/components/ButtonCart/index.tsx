@@ -3,7 +3,7 @@ import { ShoppingCart } from './styles'
 
 interface ShoppingCartProps {
   isHeader?: boolean
-  handleAddItemAtCart: () => void
+  handleAddItemAtCart?: () => void
 }
 // TODO: preciso fazer um Badges contando os produtos do carrinho
 export function ButtonCart({
@@ -11,8 +11,14 @@ export function ButtonCart({
   handleAddItemAtCart,
 }: ShoppingCartProps) {
   return (
-    <ShoppingCart $isHeader={isHeader} onClick={handleAddItemAtCart}>
-      <Icon color={isHeader ? '#C47F17' : '#FFFFFF'} weight="fill" size={22} />
-    </ShoppingCart>
+    <div>
+      <ShoppingCart $isHeader={isHeader} onClick={handleAddItemAtCart}>
+        <Icon
+          color={isHeader ? '#C47F17' : '#FFFFFF'}
+          weight="fill"
+          size={22}
+        />
+      </ShoppingCart>
+    </div>
   )
 }

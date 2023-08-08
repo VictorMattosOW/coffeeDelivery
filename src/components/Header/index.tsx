@@ -3,8 +3,11 @@ import { MapPin } from '@phosphor-icons/react'
 import { HeaderContainer, MapLocale } from './styles'
 import { ButtonCart } from '../ButtonCart'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { CoffeeShopContext } from '../../contexts/CoffeeShopeContext'
 
 export function Header() {
+  // const { addAtCart } = useContext(CoffeeShopContext)
   return (
     <HeaderContainer>
       <section>
