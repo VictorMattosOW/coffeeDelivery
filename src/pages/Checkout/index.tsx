@@ -65,6 +65,17 @@ export function Checkout() {
     return initial
   }, 0)
 
+  const options = {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 3,
+  }
+
+  function formattedMoney(value: number): string {
+    return new Intl.NumberFormat('pt-BR', options).format(value)
+  }
+
   function handleCreateNewAddress(data: addressFormData) {
     console.log(data)
   }
@@ -180,7 +191,7 @@ export function Checkout() {
           <SummaryContent>
             <Summary>
               <p>Total de itens</p>
-              <p>R$ 29,70</p>
+              <p>R$ {formattedMoney(getTotalShope)}</p>
             </Summary>
             <Summary>
               <p>Entrega</p>
@@ -188,7 +199,9 @@ export function Checkout() {
             </Summary>
             <Summary>
               <strong>Total</strong>
-              <strong>R$ {getTotalShope}</strong>
+              <strong>
+                R$ {formattedMoney(getTotalShope + Number('3.50'))}
+              </strong>
             </Summary>
             <Summary>
               <button type="submit">confirmar pedido</button>
