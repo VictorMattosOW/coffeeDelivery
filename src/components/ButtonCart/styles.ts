@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const ShoppingCart = styled.button<{ $isHeader: boolean }>`
-  /* position: absolute; */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +13,15 @@ export const ShoppingCart = styled.button<{ $isHeader: boolean }>`
     props.theme[props.$isHeader ? 'yellow-light' : 'purple-dark']};
   cursor: pointer;
 `
-// export const Badges = styled.div`
-//   position: relative;
-// `
+export const Badges = styled.div`
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  color: var(--base-white, #fff);
+  background-color: #c47f17;
+  font-size: 12px;
+  font-weight: 700;
+`

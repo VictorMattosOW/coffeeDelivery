@@ -25,15 +25,8 @@ import { z } from 'zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AddressForm } from './addressForm'
-
-const cafe = {
-  id: 1,
-  name: 'Expresso Tradicional',
-  description: 'Expresso diluído, menos intenso que o tradicional',
-  tag: ['TRADICIONAL'],
-  price: '9,90',
-  img: '/coffee-image/Type=Expresso.svg',
-}
+import { useContext } from 'react'
+import { CoffeeShopContext } from '../../contexts/CoffeeShopeContext'
 
 const addressFormValidationSchema = z.object({
   rua: z.string().min(10),
@@ -47,6 +40,12 @@ const addressFormValidationSchema = z.object({
 type addressFormData = z.infer<typeof addressFormValidationSchema>
 
 export function Checkout() {
+  const {
+    addAtCart,
+    handleAddQuantityProductAtCart,
+    handleRemoveQuantityProductAtCart,
+    handleRemoveItemAtCart,
+  } = useContext(CoffeeShopContext)
   const addressForm = useForm<addressFormData>({
     resolver: zodResolver(addressFormValidationSchema),
     defaultValues: {
@@ -61,8 +60,28 @@ export function Checkout() {
 
   const { handleSubmit } = addressForm
 
+  const getTotalShope = addAtCart.reduce((initial, coffee) => {
+    initial += Number(coffee.price) * coffee.quantity
+    return initial
+  }, 0)
+
+  const options = {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 3,
+  }
+
+  function formattedMoney(value: number): string {
+    return new Intl.NumberFormat('pt-BR', options).format(value)
+  }
+
   function handleCreateNewAddress(data: addressFormData) {
     console.log(data)
+  }
+
+  function handlePayment(e: any) {
+    console.log(e.target.defaultValue)
   }
 
   return (
@@ -79,7 +98,7 @@ export function Checkout() {
           </TitleContent>
 
           <Content>
-            <form>
+            <form onSubmit={handleSubmit(handleCreateNewAddress)}>
               <FormProvider {...addressForm}>
                 <AddressForm />
               </FormProvider>
@@ -97,24 +116,24 @@ export function Checkout() {
             </div>
           </TitleContent>
           <Content>
-            <form onSubmit={handleSubmit(handleCreateNewAddress)} action="">
-              <Select>
+            <form action="">
+              <Select onChange={handlePayment}>
                 <label>
-                  <input type="radio" name="work_days" value="1" />
+                  <input type="radio" name="work_days" value="credito" />
                   <span>
                     <CreditCard color="#8047F8" size={16} />
                     <p>cartão de crédito</p>
                   </span>
                 </label>
                 <label>
-                  <input type="radio" name="work_days" value="1" />
+                  <input type="radio" name="work_days" value="debito" />
                   <span>
                     <CreditCard color="#8047F8" size={16} />
                     <p>cartão de débito</p>
                   </span>
                 </label>
                 <label>
-                  <input type="radio" name="work_days" value="1" />
+                  <input type="radio" name="work_days" value="dinheiro" />
                   <span>
                     <CreditCard color="#8047F8" size={16} />
                     <p>dinheiro</p>
@@ -128,33 +147,51 @@ export function Checkout() {
       <PaymentContent>
         <h2>Cafés selecionados</h2>
         <CardCheckout>
-          <SelectedItemsContent>
-            <div>
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <img src={cafe.img} alt="" />
+          {addAtCart.map((coffee) => {
+            return (
+              <SelectedItemsContent key={coffee.id}>
                 <div>
-                  <p>{cafe.name}</p>
-                  <ButtonContent>
-                    <AddOrRemoveButtonContent>
-                      <button>-</button>
-                      <span>1</span>
-                      <button>+</button>
-                    </AddOrRemoveButtonContent>
-                    <ButtonDelete>
-                      <Trash color="#8047F8" size={15} />
-                      remover
-                    </ButtonDelete>
-                  </ButtonContent>
+                  <div style={{ display: 'flex', gap: '1rem' }}>
+                    <img src={coffee.img} alt="" />
+                    <div>
+                      <p>{coffee.name}</p>
+                      <ButtonContent>
+                        <AddOrRemoveButtonContent>
+                          <button
+                            onClick={() =>
+                              handleRemoveQuantityProductAtCart(coffee)
+                            }
+                          >
+                            -
+                          </button>
+                          <span>{coffee.quantity}</span>
+                          <button
+                            onClick={() =>
+                              handleAddQuantityProductAtCart(coffee)
+                            }
+                          >
+                            +
+                          </button>
+                        </AddOrRemoveButtonContent>
+                        <ButtonDelete
+                          onClick={() => handleRemoveItemAtCart(coffee)}
+                        >
+                          <Trash color="#8047F8" size={15} />
+                          remover
+                        </ButtonDelete>
+                      </ButtonContent>
+                    </div>
+                    <span>R$ {coffee.price}</span>
+                  </div>
+                  <Divider></Divider>
                 </div>
-                <span>R$ {cafe.price}</span>
-              </div>
-              <Divider></Divider>
-            </div>
-          </SelectedItemsContent>
+              </SelectedItemsContent>
+            )
+          })}
           <SummaryContent>
             <Summary>
               <p>Total de itens</p>
-              <p>R$ 29,70</p>
+              <p>R$ {formattedMoney(getTotalShope)}</p>
             </Summary>
             <Summary>
               <p>Entrega</p>
@@ -162,10 +199,12 @@ export function Checkout() {
             </Summary>
             <Summary>
               <strong>Total</strong>
-              <strong>R$ 33,20</strong>
+              <strong>
+                R$ {formattedMoney(getTotalShope + Number('3.50'))}
+              </strong>
             </Summary>
             <Summary>
-              <button>confirmar pedido</button>
+              <button type="submit">confirmar pedido</button>
             </Summary>
           </SummaryContent>
         </CardCheckout>
